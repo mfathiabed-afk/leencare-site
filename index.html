@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="ar" dir="rtl" class="l-ar">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LeenCare - تطبيق متابعة رعاية مرضى الكلى</title>
+<meta name="description" content="LeenCare: تطبيق عربي إنجليزي لتنظيم الأدوية والتحاليل والسوائل والوزن والمواعيد لمرضى الكلى وعائلاتهم.">
+<link rel="icon" href="img/logo.png">
+<style>
+:root{--bg:#f4faff;--card:#fff;--ink:#12303d;--mut:#4d6773;--pri:#0f6fb8;--acc:#12a37f;--line:#d9e7ef;--soft:#e6f3fb}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1a21;--card:#14262f;--ink:#e6f1f6;--mut:#9db5c0;--pri:#5db4f0;--acc:#3fd0a8;--line:#24404d;--soft:#173340}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,"Segoe UI",Tahoma,Arial,sans-serif;line-height:1.75;font-size:17px}
+.l-ar .en{display:none} .l-en .ar{display:none}
+a{color:var(--pri)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 18px}
+header.top{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;gap:12px;height:58px}
+header img{width:34px;height:34px;border-radius:50%}
+header b{font-size:1.1em}
+header nav{margin-inline-start:auto;display:flex;gap:6px;align-items:center}
+header nav a{text-decoration:none;color:var(--mut);padding:6px 10px;border-radius:8px;font-size:.92em}
+header nav a:hover{background:var(--soft)}
+.lang{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:5px 14px;cursor:pointer;font:inherit;font-size:.9em}
+@media(max-width:700px){header nav a.hide{display:none}}
+.hero{padding:48px 0 30px;text-align:center}
+.hero img.logo{width:132px;height:132px;border-radius:50%;box-shadow:0 14px 40px rgba(15,111,184,.28)}
+.hero h1{font-size:clamp(1.9rem,5vw,2.9rem);line-height:1.25;margin:20px 0 10px}
+.hero p.lead{max-width:640px;margin:0 auto;color:var(--mut);font-size:1.12em}
+.cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:28px 0 10px}
+.btn{display:inline-block;background:var(--pri);color:#fff;text-decoration:none;padding:13px 26px;border-radius:14px;font-weight:700}
+.btn.alt{background:transparent;color:var(--pri);border:2px solid var(--pri)}
+.tag{display:inline-block;background:var(--soft);color:var(--pri);border-radius:999px;padding:4px 14px;font-size:.88em;font-weight:600}
+section{padding:42px 0}
+h2{font-size:1.65rem;margin:0 0 6px}
+.sub{color:var(--mut);margin:0 0 26px}
+.feat{display:grid;grid-template-columns:1.1fr .9fr;gap:34px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:26px;padding:30px;margin-bottom:22px}
+.feat.flip .phone{order:-1}
+.feat.solo{grid-template-columns:1fr}
+.badge{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:14px;background:var(--soft);color:var(--pri)}
+.badge .ic{width:24px;height:24px}
+.feat h3{margin:12px 0 6px;font-size:1.3rem}
+.feat p{margin:0;color:var(--mut)}
+.phone{margin:0;justify-self:center;width:min(230px,70%);aspect-ratio:560/1079;border-radius:30px;border:7px solid #1c2a33;background:var(--soft);overflow:hidden;position:relative;box-shadow:0 18px 40px rgba(0,0,0,.18)}
+.phone img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.phone .ph{display:none;position:absolute;inset:0;place-items:center;color:var(--mut);font-size:.9em}
+.phone.missing img{display:none} .phone.missing .ph{display:grid}
+@media(max-width:760px){.feat{grid-template-columns:1fr;padding:22px}.feat .phone,.feat.flip .phone{order:2}}
+ol.steps{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+ol.steps li{display:flex;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 20px}
+.n{flex:none;width:38px;height:38px;border-radius:50%;background:var(--pri);color:#fff;display:grid;place-items:center;font-weight:700}
+ol.steps h4{margin:0 0 2px;font-size:1.08rem} ol.steps p{margin:0;color:var(--mut)}
+.safe{background:var(--soft);border-radius:22px;padding:26px;border:1px solid var(--line)}
+.safe ul{margin:10px 0 0;padding-inline-start:22px} .safe li{margin:8px 0}
+details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:4px 18px;margin-bottom:10px}
+summary{cursor:pointer;font-weight:700;padding:12px 0} details p{margin:0 0 14px;color:var(--mut)}
+footer{border-top:1px solid var(--line);padding:30px 0 50px;color:var(--mut);font-size:.92em;text-align:center}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <img src="img/logo.png" alt="LeenCare"><b>LeenCare</b>
+  <nav><a class="hide" href="#features"><span class="ar">المزايا</span><span class="en">Features</span></a><a class="hide" href="#start"><span class="ar">كيف تبدأ</span><span class="en">Get started</span></a><a class="hide" href="#faq"><span class="ar">أسئلة</span><span class="en">FAQ</span></a>
+  <button class="lang" id="lang" type="button">English</button></nav>
+</div></header>
+
+<main>
+<section class="hero"><div class="wrap">
+  <img class="logo" src="img/logo.png" alt="LeenCare">
+  <p style="margin:18px 0 0"><span class="tag"><span class="ar">نسخة تجريبية للمختبرين</span><span class="en">Tester preview</span></span></p>
+  <h1><span class="ar">رعاية مريض الكلى، أسهل وأنظم</span><span class="en">Kidney care, simpler and better organised</span></h1>
+  <p class="lead"><span class="ar">LeenCare تطبيق بالعربية والإنجليزية لتنظيم الأدوية والتحاليل والسوائل والوزن والمواعيد، للمريض وعائلته، في مكان واحد.</span><span class="en">LeenCare is an Arabic and English app that keeps medicines, lab tests, fluids, weight and appointments in one place, for the patient and the family.</span></p>
+  <div class="cta">
+    <a class="btn" id="dl" href="#download"><span class="ar">تحميل التطبيق (أندرويد)</span><span class="en">Download the app (Android)</span></a>
+    <a class="btn alt" href="#features"><span class="ar">تعرّف على المزايا</span><span class="en">See the features</span></a>
+  </div>
+</div></section>
+
+<section id="features"><div class="wrap">
+  <h2><span class="ar">المزايا</span><span class="en">Features</span></h2>
+  <p class="sub"><span class="ar">كل ما تحتاجه للمتابعة اليومية، شاشة بعد شاشة.</span><span class="en">Everything for daily follow-up, screen by screen.</span></p>
+  
+<article class="feat">
+  <div class="txt"><span class="badge"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2v2H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2zM5 9h14v10H5z" fill="currentColor"/></svg></span><h3><span class="ar">شاشة اليوم: كل شيء في مكان واحد</span><span class="en">Today: everything in one place</span></h3><p><span class="ar">تفتح على شاشة اليوم فترى ملخص اليوم والدواء القادم والموعد القادم وأقسام التطبيق بنظرة واحدة، مع سطر لطيف يذكّر بأن التطبيق للتنظيم والمتابعة ولا يغني عن الطبيب.</span><span class="en">The app opens on Today: the day's summary, the next medicine, the next appointment and every section at a glance, with a gentle reminder that the app helps you organise and does not replace your doctor.</span></p></div>
+  <figure class="phone"><img src="shots/01-today.jpg" loading="lazy" alt="Today: everything in one place"></figure>
+</article>
+<article class="feat flip">
+  <div class="txt"><span class="badge"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.2 13.8l9.6-9.6a4 4 0 0 1 5.6 5.6l-9.6 9.6a4 4 0 0 1-5.6-5.6zm2.1 0l3.9 3.9 5.6-5.6-3.9-3.9z" fill="currentColor"/></svg></span><h3><span class="ar">الأدوية والتذكيرات</span><span class="en">Medicines and reminders</span></h3><p><span class="ar">جدول أدوية اليوم مقسّم إلى صباح وظهر ومساء، تسجّل فيه أنك أخذت الجرعة، ويعرض الجرعات الفائتة. لا يغيّر التطبيق جرعة بنفسه.</span><span class="en">Today's medicine schedule split into morning and afternoon, where you mark each dose as taken and see missed doses. The app never changes a dose on its own.</span></p></div>
+  <figure class="phone"><img src="shots/02-medications.jpg" loading="lazy" alt="Medicines and reminders"></figure>
+</article>
+<article class="feat">
+  <div class="txt"><span class="badge"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.2 13.8l9.6-9.6a4 4 0 0 1 5.6 5.6l-9.6 9.6a4 4 0 0 1-5.6-5.6zm2.1 0l3.9 3.9 5.6-5.6-3.9-3.9z" fill="currentColor"/></svg></span><h3><span class="ar">قائمة الأدوية والمخزون</span><span class="en">Medicine list and stock</span></h3><p><span class="ar">قائمة بكل دواء وحالته، مع متابعة المخزون وتنبيه قرب النفاد (يمكن إيقافه من الإعدادات)، وسجل لتغييرات الجرعات.</span><span class="en">A list of every medicine and its status, with stock tracking, a low-stock alert (it can be switched off in Settings) and a log of dose changes.</span></p></div>
+  <figure class="phone"><img src="shots/03-medlist.jpg" loading="lazy" alt="Medicine list and stock"></figure>
+</article>
+<article class="feat solo">
+  <div class="txt"><span class="badge"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h2v14H3zm4 0h1v14H7zm3 0h3v14h-3zm5 0h1v14h-1zm3 0h3v14h-3z" fill="currentColor"/></svg></span><h3><span class="ar">مسح باركود علبة الدواء</span><span class="en">Scan the medicine box barcode</span></h3><p><span class="ar">امسح باركود العلبة مرة واحدة ليتذكّره التطبيق، وفي المرات التالية تظهر معلومات الدواء مباشرة بعد المسح. وتقدر أيضاً تصوّر العلبة والوصفة.</span><span class="en">Scan the box barcode once and the app remembers it; next time the medicine details appear right after the scan. You can also photograph the box and the prescription.</span></p></div>
+  
+</article>
+<article class="feat flip">
+  <div class="txt"><span class="badge"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6v2h-1v5l5 8a2 2 0 0 1-1.7 3H6.7A2 2 0 0 1 5 18l5-8V5H9z" fill="currentColor"/></svg></span><h3><span class="ar">التحاليل ونتائجها</span><span class="en">Lab results</span></h3><p><span class="ar">سجّل التحاليل بتواريخها ووحداتها وتابع تغيّر القيم مع الوقت، أو استورد التقرير من ملف PDF. يعرض التطبيق القيم ولا يحكم بنفسه أن نتيجة ما خطيرة.</span><span class="en">Record lab tests with dates and units and follow how values change over time, or import a report from a PDF file. The app shows the values; it never decides by itself that a result is critical.</span></p></div>
+  <figure class="phone"><img src="shots/04-labs.jpg" loading="lazy" alt="Lab results"></figure>
+</article>
+<article class="feat">
+  <div class="txt"><span class="badge"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2s7 7.5 7 12a7 7 0 0 1-14 0c0-4.5 7-12 7-12z" fill="currentColor"/></svg></span><h3><span class="ar">ميزان السوائل والوزن اليومي</span><span class="en">Fluid balance and daily weight</span></h3><p><span class="ar">سجّل ما شربته وما خرج من بول، مع خيار الإسهال أو الترجيع بكمية تقديرية، وسجّل وزنك بجانبها. ينبّهك التطبيق إذا زاد الوزن زيادة غير معتادة، وتقدر تحدد أنت حد الزيادة بحسب توجيه طبيبك.</span><span class="en">Log what you drink and the urine passed, with diarrhoea or vomiting as an estimated amount, and your weight next to it. The app warns you about an unusual weight rise, and you can set the limit according to your doctor's advice.</span></p></div>
+  <figure class="phone"><img src="shots/05-fluids.jpg" loading="lazy" alt="Fluid balance and daily weight"></figure>
+</article>
+<article class="feat flip">
+  <div class="txt"><span class="badge"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2v2H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2zm3 10l2.5 2.5L17 10l1.4 1.4-5.9 5.9-3.9-3.9z" fill="currentColor"/></svg></span><h3><span class="ar">المواعيد</span><span class="en">Appointments</span></h3><p><span class="ar">نظّم مواعيد الأطباء مع بيانات المنشأة الطبية، وتلقَّ تذكيراً قبل الموعد، وتابع زيارات المستشفى والإقامة فيه.</span><span class="en">Organise doctor appointments with the facility details, get a reminder before each one, and follow hospital visits and stays.</span></p></div>
+  <figure class="phone"><img src="shots/07-appointments.jpg" loading="lazy" alt="Appointments"></figure>
+</article>
+<article class="feat">
+  <div class="txt"><span class="badge"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm5 4v3H7v4h3v3h4v-3h3v-4h-3V7z" fill="currentColor"/></svg></span><h3><span class="ar">المستشفيات</span><span class="en">Hospitals</span></h3><p><span class="ar">قائمة بمستشفياتك مع زياراتها ومواعيدها، ودليل مستشفيات الإمارات للبحث بالإمارة والاسم. الدليل اقتراحات مبدئية وليس دليلاً طبياً موثّقاً، فتأكد من التفاصيل قبل الزيارة.</span><span class="en">A list of your hospitals with their visits and appointments, and a UAE hospital directory you can search by emirate and name. The directory is a starter list, not a verified medical directory, so confirm details before visiting.</span></p></div>
+  <figure class="phone"><img src="shots/15-hospitals.jpg" loading="lazy" alt="Hospitals"></figure>
+</article>
+<article class="feat flip">
+  <div class="txt"><span class="badge"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V4h2v14h14v2zm4-4v-6h3v6zm5 0V7h3v9zm5 0v-3h3v3z" fill="currentColor"/></svg></span><h3><span class="ar">التقارير وتصديرها PDF</span><span class="en">Reports and PDF export</span></h3><p><span class="ar">تقرير للطبيب في ملف PDF واحد يجمع التحاليل والأدوية والغسيل والمواعيد، وتقارير للتحاليل والالتزام بالأدوية والمخزون والمصاريف.</span><span class="en">A doctor visit report in one PDF with labs, medicines, dialysis and appointments, plus reports on lab results, medicine adherence, stock and expenses.</span></p></div>
+  <figure class="phone"><img src="shots/08-reports.jpg" loading="lazy" alt="Reports and PDF export"></figure>
+</article>
+<article class="feat">
+  <div class="txt"><span class="badge"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3C5 3 3 7 3 11s2 9 6 9c2 0 3-1.500 3-3 0 1.500 1 3 3 3 4 0 6-5 6-9s-2-8-6-8c-2 0-3 1-3 2.500C12 4 11 3 9 3z" fill="currentColor"/></svg></span><h3><span class="ar">أدوات خاصة بالكلى</span><span class="en">Kidney tools</span></h3><p><span class="ar">جلسات الغسيل بسجلها وأوزانها، وميزان السوائل والبول، وفترات الدخول للمستشفى، والمصاريف الطبية في مكان واحد.</span><span class="en">Dialysis sessions with their log and weights, fluids and urine, hospital stays and medical expenses in one place.</span></p></div>
+  <figure class="phone"><img src="shots/10-kidney.jpg" loading="lazy" alt="Kidney tools"></figure>
+</article>
+<article class="feat flip">
+  <div class="txt"><span class="badge"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm8 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM2 19c0-3 3-5 6-5s6 2 6 5zm12 0c0-1.600-.5-2.900-1.400-4 .5-.1 1-.1 1.400-.1 3 0 6 1.500 6 4.100z" fill="currentColor"/></svg></span><h3><span class="ar">أكثر من مريض في التطبيق</span><span class="en">More than one patient</span></h3><p><span class="ar">يمكن لولي الأمر إدارة أكثر من مريض، ولكل مريض ملف صحي منفصل ببياناته التي لا تختلط بغيره.</span><span class="en">A parent or carer can manage more than one patient, and each patient has a separate health file whose data never mixes with anyone else's.</span></p></div>
+  <figure class="phone"><img src="shots/09-family.jpg" loading="lazy" alt="More than one patient"></figure>
+</article>
+<article class="feat">
+  <div class="txt"><span class="badge"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a2 2 0 0 0 2-2h-4a2 2 0 0 0 2 2zm6-6V11a6 6 0 0 0-4-5.700V4a2 2 0 0 0-4 0v1.300A6 6 0 0 0 6 11v5l-2 2v1h16v-1z" fill="currentColor"/></svg></span><h3><span class="ar">موثوقية التذكيرات</span><span class="en">Reminder reliability</span></h3><p><span class="ar">شاشة تقودك خطوة بخطوة لضبط الهاتف حتى تصل تنبيهات الدواء في وقتها: السماح بالإشعارات والمنبهات الدقيقة، وعدم تقييد البطارية، مع إرشادات لكل ماركة هاتف واختبار فوري.</span><span class="en">A screen that walks you through setting up your phone so medicine alerts arrive on time: allow notifications and exact alarms, do not restrict the battery, with tips for each phone brand and an instant test.</span></p></div>
+  <figure class="phone"><img src="shots/13-reminders.jpg" loading="lazy" alt="Reminder reliability"></figure>
+</article>
+<article class="feat flip">
+  <div class="txt"><span class="badge"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 18H7a4 4 0 0 1-.6-8A6 6 0 0 1 18 8.500 4.500 0 0 1 19 18z" fill="currentColor"/></svg></span><h3><span class="ar">النسخ الاحتياطي على Google Drive</span><span class="en">Backup to Google Drive</span></h3><p><span class="ar">نسخ احتياطي مشفّر اختياري إلى حسابك على Google Drive، يدوي أو تلقائي عدة مرات في اليوم، مع استرجاع البيانات عند تغيير الهاتف.</span><span class="en">Optional encrypted backup to your own Google Drive, manual or automatic several times a day, with restore when you change phones.</span></p></div>
+  <figure class="phone"><img src="shots/14-backup.jpg" loading="lazy" alt="Backup to Google Drive"></figure>
+</article>
+<article class="feat">
+  <div class="txt"><span class="badge"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm9 5v-2l-2.100-.7a7 7 0 0 0-.6-1.400l1-2-1.400-1.400-2 1a7 7 0 0 0-1.400-.6L14 3h-2l-.7 2.100a7 7 0 0 0-1.400.6l-2-1-1.400 1.400 1 2a7 7 0 0 0-.6 1.400L3 11v2l2.100.7a7 7 0 0 0 .6 1.400l-1 2 1.400 1.400 2-1a7 7 0 0 0 1.400.6L12 21h2l.7-2.100a7 7 0 0 0 1.400-.6l2 1 1.400-1.400-1-2a7 7 0 0 0 .6-1.400z" fill="currentColor"/></svg></span><h3><span class="ar">اللغة والمظهر والإعدادات</span><span class="en">Language, appearance and settings</span></h3><p><span class="ar">عربي أو إنجليزي، وضع فاتح أو غامق، حجم النص، وإعدادات الخصوصية مع إمكانية حذف الحساب والبيانات.</span><span class="en">Arabic or English, light or dark mode, text size, and privacy settings with the option to delete your account and data.</span></p></div>
+  <figure class="phone"><img src="shots/12-settings.jpg" loading="lazy" alt="Language, appearance and settings"></figure>
+</article>
+<article class="feat solo">
+  <div class="txt"><span class="badge"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h7a3 3 0 0 1 1 .2A3 3 0 0 1 13 4h7v15h-7a2 2 0 0 0-1 .3 2 2 0 0 0-1-.3H4z" fill="currentColor"/></svg></span><h3><span class="ar">دليل الاستخدام داخل التطبيق</span><span class="en">In-app guide</span></h3><p><span class="ar">شرح مبسّط لكل قسم، مع قسم عن الخصوصية وكيفية حذف حسابك وبياناتك.</span><span class="en">A simple explanation of every section, plus how privacy works and how to delete your account and data.</span></p></div>
+  
+</article>
+</div></section>
+
+<section id="start"><div class="wrap">
+  <h2><span class="ar">كيف تبدأ: من الألف إلى الياء</span><span class="en">How to start: from A to Z</span></h2>
+  <p class="sub"><span class="ar">تسع خطوات من التثبيت إلى التقرير.</span><span class="en">Nine steps from installing to your first report.</span></p>
+  <ol class="steps"><li><div class="n">1</div><div><h4><span class="ar">ثبّت التطبيق</span><span class="en">Install the app</span></h4><p><span class="ar">نزّل ملف APK من زر التحميل، وافتحه. إن طلب الهاتف السماح بالتثبيت من هذا المصدر فوافق.</span><span class="en">Download the APK with the button above and open it. If your phone asks to allow installs from this source, allow it.</span></p></div></li><li><div class="n">2</div><div><h4><span class="ar">أنشئ حساباً أو ادخل كزائر</span><span class="en">Create an account or continue as guest</span></h4><p><span class="ar">يمكنك التسجيل بالبريد أو بحساب Google، أو التجربة كزائر.</span><span class="en">Sign up with email or Google, or try the app as a guest.</span></p></div></li><li><div class="n">3</div><div><h4><span class="ar">اقرأ ووافق على الشروط</span><span class="en">Read and accept the terms</span></h4><p><span class="ar">تظهر شاشة «قبل أن تبدأ» بإخلاء المسؤولية وسياسة الخصوصية، ويمكنك التبديل بين العربية والإنجليزية.</span><span class="en">A “Before you start” screen shows the disclaimer and privacy policy; you can switch between Arabic and English.</span></p></div></li><li><div class="n">4</div><div><h4><span class="ar">أضف المريض</span><span class="en">Add the patient</span></h4><p><span class="ar">أدخل الاسم وتاريخ الميلاد والبيانات الأساسية. وكل الحقول مطلوبة عدا الملاحظات.</span><span class="en">Enter the name, date of birth and basic details. Every field is required except notes.</span></p></div></li><li><div class="n">5</div><div><h4><span class="ar">أضف الأدوية</span><span class="en">Add the medicines</span></h4><p><span class="ar">اختر الدواء وجرعته ومواعيده، أو امسح باركود العلبة.</span><span class="en">Choose the medicine, its dose and times, or scan the box barcode.</span></p></div></li><li><div class="n">6</div><div><h4><span class="ar">فعّل التذكيرات</span><span class="en">Set up reminders</span></h4><p><span class="ar">من الإعدادات راجع «موثوقية التذكيرات». بعض الهواتف توقف التطبيقات في الخلفية، فاستثنِ LeenCare من توفير البطارية.</span><span class="en">In Settings check “Reminder reliability”. Some phones stop background apps, so exclude LeenCare from battery saving.</span></p></div></li><li><div class="n">7</div><div><h4><span class="ar">سجّل يومك</span><span class="en">Log your day</span></h4><p><span class="ar">سجّل السوائل والوزن والتحاليل، وأضف مواعيد الأطباء.</span><span class="en">Log fluids, weight and lab tests, and add doctor appointments.</span></p></div></li><li><div class="n">8</div><div><h4><span class="ar">اطبع التقرير للطبيب</span><span class="en">Take a report to the doctor</span></h4><p><span class="ar">من التقارير اختر مختصراً أو مفصلاً وصدّره PDF.</span><span class="en">From Reports pick brief or detailed and export it as PDF.</span></p></div></li><li><div class="n">9</div><div><h4><span class="ar">فعّل النسخ الاحتياطي</span><span class="en">Turn on backup</span></h4><p><span class="ar">اختيارياً: خزّن نسخة في حسابك على Google Drive حتى لا تضيع بياناتك إذا تغيّر الهاتف.</span><span class="en">Optional: keep a copy in your own Google Drive so your data survives a phone change.</span></p></div></li></ol>
+</div></section>
+
+<section id="safety"><div class="wrap"><div class="safe">
+  <h2><span class="ar">الأمان والخصوصية</span><span class="en">Safety and privacy</span></h2>
+  <ul>
+    <li><span class="ar">التطبيق أداة تنظيم ومتابعة وليس جهازاً طبياً، ولا يشخّص ولا يعالج ولا يغني عن الطبيب.</span><span class="en">The app is an organising and follow-up tool, not a medical device. It does not diagnose or treat and does not replace your doctor.</span></li>
+    <li><span class="ar">لا توقف دواء ولا تغيّر جرعته دون استشارة طبيبك.</span><span class="en">Never stop or change a medicine without asking your doctor.</span></li>
+    <li><span class="ar">في الطوارئ اتصل بالإسعاف أو اذهب لأقرب مستشفى. التذكيرات قد تتأخر بحسب إعدادات الهاتف.</span><span class="en">In an emergency call the ambulance or go to the nearest hospital. Reminders can be late depending on your phone settings.</span></li>
+    <li><span class="ar">بيانات الرعاية تُحفظ على هاتفك، والنسخ الاحتياطي اختياري إلى حسابك على Google Drive.</span><span class="en">Care data is kept on your phone; backup is optional and goes to your own Google Drive.</span></li>
+    <li><a href="https://mfathiabed-afk.github.io/leencare-privacy/"><span class="ar">اقرأ سياسة الخصوصية كاملة</span><span class="en">Read the full privacy policy</span></a></li>
+  </ul>
+</div></div></section>
+
+<section id="download"><div class="wrap" style="text-align:center">
+  <h2><span class="ar">حمّل النسخة التجريبية</span><span class="en">Get the tester version</span></h2>
+  <p class="sub"><span class="ar">لأجهزة أندرويد. بعد التحميل افتح الملف واسمح بالتثبيت من هذا المصدر عند الطلب.</span><span class="en">For Android phones. After downloading open the file and allow installation from this source when asked.</span></p>
+  <p><a class="btn" href="APK_LINK_HERE"><span class="ar">تحميل ملف APK</span><span class="en">Download the APK</span></a></p>
+  <p class="sub" style="font-size:.9em"><span class="ar">النسخة 0.9.0 (تجريبية)</span><span class="en">Version 0.9.0 (preview)</span></p>
+</div></section>
+
+<section id="faq"><div class="wrap">
+  <h2><span class="ar">أسئلة شائعة</span><span class="en">Frequently asked questions</span></h2><p class="sub"></p>
+  <details><summary><span class="ar">هل التطبيق مجاني؟</span><span class="en">Is the app free?</span></summary><p><span class="ar">هذه نسخة تجريبية للاختبار، وهي مجانية للمختبرين.</span><span class="en">This is a test version and it is free for testers.</span></p></details><details><summary><span class="ar">هل يشخّص المرض أو يغيّر الجرعة؟</span><span class="en">Does it diagnose or change doses?</span></summary><p><span class="ar">لا. التطبيق أداة تنظيم ومتابعة فقط، ولا يغني عن الطبيب. لا توقف دواء ولا تغيّر جرعته دون استشارته.</span><span class="en">No. It is an organising and follow-up tool and does not replace your doctor. Never stop or change a medicine without asking them.</span></p></details><details><summary><span class="ar">أين تُحفظ بياناتي؟</span><span class="en">Where is my data kept?</span></summary><p><span class="ar">تُحفظ على هاتفك. والنسخ الاحتياطي اختياري وإلى حسابك أنت على Google Drive.</span><span class="en">On your phone. Backup is optional and goes to your own Google Drive.</span></p></details><details><summary><span class="ar">هل يصلح للطوارئ؟</span><span class="en">Can I rely on it in an emergency?</span></summary><p><span class="ar">لا. في الحالات الطارئة اتصل بالإسعاف أو اذهب لأقرب مستشفى. وقد تتأخر التذكيرات بحسب إعدادات الهاتف.</span><span class="en">No. In an emergency call the ambulance or go to the nearest hospital. Reminders can be late depending on your phone settings.</span></p></details><details><summary><span class="ar">هل يعمل على آيفون؟</span><span class="en">Does it work on iPhone?</span></summary><p><span class="ar">حالياً على أندرويد فقط.</span><span class="en">Android only for now.</span></p></details><details><summary><span class="ar">كيف أحذف حسابي وبياناتي؟</span><span class="en">How do I delete my account and data?</span></summary><p><span class="ar">من داخل التطبيق: الإعدادات ثم الخصوصية. والتفاصيل في دليل الاستخدام.</span><span class="en">Inside the app: Settings, then Privacy. Details are in the in-app guide.</span></p></details>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <p><span class="ar">للتواصل والملاحظات:</span><span class="en">Contact and feedback:</span> <a href="mailto:leencare.app@gmail.com">leencare.app@gmail.com</a> · <a href="https://mfathiabed-afk.github.io/leencare-privacy/"><span class="ar">سياسة الخصوصية</span><span class="en">Privacy policy</span></a></p>
+  <p><span class="ar">LeenCare أداة تنظيم ومتابعة ولا تُغني عن الاستشارة الطبية.</span><span class="en">LeenCare is an organising and follow-up tool and is not a substitute for medical advice.</span></p>
+</div></footer>
+
+<script>
+(function(){
+  var h=document.documentElement,b=document.getElementById('lang');
+  function set(l){h.className='l-'+l;h.lang=l;h.dir=l==='ar'?'rtl':'ltr';b.textContent=l==='ar'?'English':'العربية';try{localStorage.setItem('lc_lang',l)}catch(e){}}
+  var s='ar';try{s=localStorage.getItem('lc_lang')||'ar'}catch(e){}
+  set(s);
+  b.addEventListener('click',function(){set(h.lang==='ar'?'en':'ar')});
+})();
+</script>
+</body></html>
