@@ -7,115 +7,181 @@
 <link rel="icon" href="img/logo.png">
 <style>
 :root{--bg:#f4faff;--card:#fff;--ink:#12303d;--mut:#4d6773;--pri:#0f6fb8;--acc:#12a37f;--line:#d9e7ef;--soft:#e6f3fb;--warn:#e8890c}
-@media (prefers-color-scheme:dark){:root{--bg:#0d1a21;--card:#14262f;--ink:#e6f1f6;--mut:#9db5c0;--pri:#5db4f0;--acc:#3fd0a8;--line:#24404d;--soft:#173340}}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0d1a21;--card:#14262f;--ink:#e6f1f6;--mut:#9db5c0;--pri:#5db4f0;--acc:#3fd0a8;--line:#24404d;--soft:#173340}}
+:root[data-theme=dark]{--bg:#0d1a21;--card:#14262f;--ink:#e6f1f6;--mut:#9db5c0;--pri:#5db4f0;--acc:#3fd0a8;--line:#24404d;--soft:#173340}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,"Segoe UI",Tahoma,Arial,sans-serif;line-height:1.6}
 .top{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid var(--line);background:var(--card)}
-.top img{width:34px;height:34px;border-radius:50%}
-.top b{flex:1}
-.top a{color:var(--pri);text-decoration:none;font-size:.9em}
-button{font:inherit;cursor:pointer}
-.lang{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:4px 14px}
-.note{max-width:760px;margin:14px auto 0;padding:0 16px;color:var(--mut);font-size:.92em;text-align:center}
-.stage{display:flex;justify-content:center;padding:16px}
-.phone{width:min(390px,100%);height:min(760px,calc(100vh - 150px));min-height:560px;border:8px solid #1c2a33;border-radius:36px;background:var(--bg);display:flex;flex-direction:column;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.2)}
-.bar{padding:14px 16px 8px;background:var(--pri);color:#fff}
-.bar small{opacity:.85}
-.bar h1{margin:0;font-size:1.15rem}
-.banner{background:var(--warn);color:#fff;padding:9px 14px;font-weight:700;font-size:.92em;animation:fl 2.4s ease-in-out infinite}
-@keyframes fl{50%{opacity:.55}}
-@media (prefers-reduced-motion:reduce){.banner{animation:none}}
-.body{flex:1;overflow:auto;padding:14px}
+.top img{width:34px;height:34px;border-radius:50%}.top b{flex:1}.top a{color:var(--pri);text-decoration:none;font-size:.9em}
+button,input,select{font:inherit;color:inherit}button{cursor:pointer}
+.lang{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:4px 14px}
+.note{max-width:760px;margin:12px auto 0;padding:0 16px;color:var(--mut);font-size:.9em;text-align:center}
+.stage{display:flex;justify-content:center;padding:14px}
+.phone{position:relative;width:min(400px,100%);height:min(780px,calc(100vh - 140px));min-height:580px;border:8px solid #1c2a33;border-radius:36px;background:var(--bg);display:flex;flex-direction:column;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.2);font-size:var(--fs,16px)}
+.bar{padding:12px 16px 8px;background:#0f6fb8;color:#fff;display:flex;align-items:center;gap:8px}
+.bar .t{flex:1}.bar small{opacity:.85;display:block}.bar h1{margin:0;font-size:1.1em}
+.bar button{background:rgba(255,255,255,.2);border:0;color:#fff;border-radius:10px;padding:4px 10px}
+.banner{background:var(--warn);color:#fff;padding:8px 14px;font-weight:700;font-size:.9em;animation:fl 2.4s ease-in-out infinite}
+@keyframes fl{50%{opacity:.55}}@media (prefers-reduced-motion:reduce){.banner{animation:none}}
+.body{flex:1;overflow:auto;padding:12px}
 .tabs{display:flex;border-top:1px solid var(--line);background:var(--card)}
-.tabs button{flex:1;border:0;background:none;padding:10px 2px;color:var(--mut);font-size:.82em}
+.tabs button{flex:1;border:0;background:none;padding:9px 2px;color:var(--mut);font-size:.8em}
 .tabs button.on{color:var(--pri);font-weight:700;border-top:3px solid var(--pri);margin-top:-1px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px;margin-bottom:10px}
-.row{display:flex;align-items:center;gap:10px}
-.row .g{flex:1}
-.mut{color:var(--mut);font-size:.88em}
-.chk{width:34px;height:34px;border-radius:50%;border:2px solid var(--pri);background:none;color:#fff;font-size:1.1em}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:11px 13px;margin-bottom:9px}
+.row{display:flex;align-items:center;gap:10px}.g{flex:1}
+.mut{color:var(--mut);font-size:.86em}
+.chk{width:34px;height:34px;flex:none;border-radius:50%;border:2px solid var(--pri);background:none;color:#fff}
 .chk.done{background:var(--acc);border-color:var(--acc)}
-.pb{height:10px;background:var(--soft);border-radius:99px;overflow:hidden;margin:8px 0}
-.pb i{display:block;height:100%;background:var(--acc);transition:width .3s}
-.pb i.over{background:var(--warn)}
-.btn{background:var(--pri);color:#fff;border:0;border-radius:12px;padding:8px 14px;font-weight:700}
-.btn.alt{background:var(--soft);color:var(--pri)}
-.pill{display:inline-block;border-radius:99px;padding:2px 10px;font-size:.82em;background:var(--soft);color:var(--pri)}
-.pill.low{background:#fde8cf;color:#9a5300}
-.dis{font-size:.8em;color:var(--mut);margin-top:10px}
+.pb{height:10px;background:var(--soft);border-radius:99px;overflow:hidden;margin:7px 0}.pb i{display:block;height:100%;background:var(--acc);transition:width .3s}.pb i.over{background:var(--warn)}
+.btn{background:var(--pri);color:#fff;border:0;border-radius:12px;padding:7px 13px;font-weight:700}.btn.alt{background:var(--soft);color:var(--pri)}
+.pill{display:inline-block;border-radius:99px;padding:2px 10px;font-size:.8em;background:var(--soft);color:var(--pri)}.pill.low{background:#fde8cf;color:#9a5300}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 8px;text-align:center}.tile span{font-size:1.5em;display:block}
+h3{margin:4px 0 8px;font-size:1em}
+input[type=text],input[type=number],input[type=password],select{width:100%;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:7px 10px;margin:4px 0}
+.seg{display:flex;gap:6px;margin:6px 0}.seg button{flex:1;border:1px solid var(--line);background:var(--card);border-radius:10px;padding:5px}.seg button.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+.dis{font-size:.78em;color:var(--mut);margin-top:10px}
 svg{width:100%;height:auto}
+.modal{position:absolute;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;padding:22px;z-index:9}
+.modal .dlg{background:var(--card);border-radius:20px;padding:18px;width:100%;position:relative}.modal img{position:absolute;top:10px;inset-inline-end:12px;width:26px;height:26px;border-radius:50%}
+.modal p{margin:6px 0 14px}
+.splash{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;gap:12px}
+.splash img{width:90px;height:90px;border-radius:50%}
+.sw{display:flex;align-items:center;gap:10px}.sw input{width:auto}
+details{border-top:1px solid var(--line);padding:6px 0}summary{cursor:pointer;font-weight:700}
 </style>
 </head>
 <body>
 <div class="top"><img src="img/logo.png" alt=""><b>LeenCare Demo</b><a href="index.html" id="back"></a><button class="lang" id="lang" type="button"></button></div>
 <p class="note" id="note"></p>
-<div class="stage"><div class="phone">
-  <div class="bar"><small id="hello"></small><h1 id="title"></h1></div>
-  <div id="banner"></div>
-  <div class="body" id="body"></div>
-  <div class="tabs" id="tabs"></div>
-</div></div>
+<div class="stage"><div class="phone" id="ph"></div></div>
 <script>
 (function(){
 var L='ar';try{L=localStorage.getItem('lc_lang')||'ar'}catch(e){}
-var S={ar:{back:'الموقع',lang:'English',note:'عرض تجريبي ببيانات وهمية بالكامل. لا يُحفظ شيء ولا يمثل أي شخص حقيقي. جرّب تأكيد جرعة أو إضافة سوائل.',hello:'مرحباً',who:'مريض تجريبي',today:'اليوم',meds:'الأدوية',fluids:'السوائل',labs:'التحاليل',
- doses:'جرعات اليوم',left:'متبقي',of:'من',stock:'المخزون',days:'يوم',box:'علبة',pills:'حبة',add:'إضافة',addBox:'إضافة علبة',low:'ينتهي خلال أسبوع:',cream:'كريم: كل علبة تكفي 30 يوماً على الأقل',
- intake:'السوائل الداخلة',limit:'الحد اليومي',ml:'مل',other:'إسهال/قيء (تقدير)',addMl:'إضافة 100 مل',addLoss:'إضافة 100 مل',overlimit:'تجاوزت الحد الذي حدده فريقك الطبي',
- cr:'الكرياتينين (mg/dL)',crnote:'قيم وهمية للتوضيح فقط. التطبيق يعرض القيم ولا يشخّص ولا يقرر أن نتيجة حرجة.',dis:'التطبيق أداة تنظيم ومتابعة ولا يغني عن الطبيب.',
- m:['أدوية الضغط','فيتامين د','كريم الجلد'],tm:['8:00 ص','8:00 م']},
-en:{back:'Website',lang:'العربية',note:'A demo with entirely fake data. Nothing is saved and it represents no real person. Try confirming a dose or adding fluids.',hello:'Hello',who:'Demo patient',today:'Today',meds:'Medicines',fluids:'Fluids',labs:'Labs',
- doses:"Today's doses",left:'left',of:'of',stock:'Stock',days:'days',box:'box',pills:'pills',add:'Add',addBox:'Add a box',low:'Runs out within a week:',cream:'Cream: each box counts as at least 30 days',
- intake:'Fluid intake',limit:'Daily limit',ml:'mL',other:'Diarrhea/vomiting (estimate)',addMl:'Add 100 mL',addLoss:'Add 100 mL',overlimit:'Above the limit set by your care team',
- cr:'Creatinine (mg/dL)',crnote:'Fake values for illustration only. The app shows values; it never diagnoses or decides a result is critical.',dis:'The app is an organising and follow-up tool and is not a substitute for a doctor.',
- m:['Blood pressure tablet','Vitamin D','Skin cream'],tm:['8:00 AM','8:00 PM']}};
-function t(k){return S[L][k]}
-var tab='today';
-var meds=[{id:0,pills:20,perDay:2,cream:false},{id:1,pills:6,perDay:1,cream:false},{id:2,pills:2,perDay:1,cream:true}];
-var doses=[{m:0,s:0,d:false},{m:1,s:0,d:false},{m:2,s:1,d:false},{m:0,s:1,d:false}];
-var fl={intake:900,loss:0,limit:1500};
-var cr=[1.8,1.7,1.9,1.6,1.7,1.5,1.6];
-function days(m){if(m.cream)return Math.min(90,Math.floor(m.pills*30));return m.perDay?Math.floor(m.pills/m.perDay):0}
+function T(a,e){return L==='ar'?a:e}
+function A(a,e){return {a:a,e:e}}
+function N(o){return typeof o==='string'?o:(L==='ar'?o.a:o.e)}
+var ph=document.getElementById('ph');
+var step='signin',tab='today',sub=null,modal=null,dayOff=0,labSel=0,rep='brief',fsz=16,theme='auto',pin='',pinOk=false,crash=false,backupOn=true,lastBackup=T('اليوم 08:15','Today 08:15');
+var cur=0;
+function mk(n,age){return {name:n,
+ meds:[{n:A('دواء الضغط','Blood pressure tablet'),pills:20,per:2,cream:false,log:[]},{n:A('فيتامين د','Vitamin D'),pills:6,per:1,cream:false,log:[]},{n:A('كريم الجلد','Skin cream'),pills:2,per:1,cream:true,log:[]}],
+ doses:[{m:0,t:0,d:{}},{m:1,t:0,d:{}},{m:2,t:1,d:{}},{m:0,t:1,d:{}}],
+ intake:900,loss:0,limit:1500,weight:[31.2,31.0,31.5,31.3,31.9],
+ cr:[1.8,1.7,1.9,1.6,1.7,1.5,1.6],k:[4.4,4.6,4.8,4.5,4.7,4.3,4.5],hb:[11.2,11.5,11.1,11.8,11.6,11.9,12.0],
+ appts:[{t:A('مراجعة كلى','Nephrology visit'),d:'2026-11-24',att:null},{t:A('تحاليل دم','Blood tests'),d:'2026-11-10',att:true}],
+ exp:[{t:A('تحاليل','Lab tests'),c:'120'},{t:A('أدوية','Medicines'),c:'85'}],
+ changes:[A('تعديل جرعة دواء الضغط: حبة ← حبتان (بأمر الطبيب)','Blood pressure tablet dose: 1 → 2 (doctor’s instruction)')],early:10,h:140}}
+var P=[mk(A('مريض تجريبي أ','Demo patient A')),mk(A('مريض تجريبي ب','Demo patient B'))];
+P[1].meds[0].pills=3;P[1].cr=[1.1,1.0,1.2,1.1,1.0,1.1,1.0];
+var hosp=[{c:A('الإمارات','UAE'),n:A('مستشفى المثال العام','Example General Hospital')},{c:A('الإمارات','UAE'),n:A('مختبر المثال','Example Laboratory')},{c:A('الأردن','Jordan'),n:A('مركز المثال الطبي','Example Medical Center')}];
+function p(){return P[cur]}
+function days(m){if(m.cream)return Math.min(90,Math.floor(m.pills*30));return m.per?Math.floor(m.pills/m.per):0}
+function dlg(msg,ok){modal={msg:msg,ok:ok}}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function chart(vals,unit){var w=300,h=140,mn=Math.min.apply(null,vals),mx=Math.max.apply(null,vals),r=(mx-mn)||1;
+ var pts=vals.map(function(v,i){return [20+i*(w-40)/(vals.length-1),h-22-(v-mn)/r*(h-46),v]});
+ return '<svg viewBox="0 0 '+w+' '+h+'" role="img"><polyline fill="none" stroke="var(--pri)" stroke-width="3" points="'+pts.map(function(q){return q[0]+','+q[1]}).join(' ')+'"/>'+pts.map(function(q){return '<circle cx="'+q[0]+'" cy="'+q[1]+'" r="4" fill="var(--pri)"/><text x="'+q[0]+'" y="'+(q[1]-8)+'" font-size="9" text-anchor="middle" fill="var(--mut)">'+q[2]+'</text>'}).join('')+'</svg><div class="mut">'+unit+'</div>'}
+function egfr(h,c){return c>0?Math.round(0.413*h/c*10)/10:0}
+function bar(title,back){return '<div class="bar">'+(back?'<button data-go="back">'+(L==='ar'?'›':'‹')+'</button>':'')+'<div class="t"><small>'+T('مرحباً','Hello')+'</small><h1>'+title+'</h1></div>'+(back?'':'<button data-go="who">⇄</button>')+'</div>'}
+function banner(){var lows=p().meds.filter(function(m){return days(m)<=7});return lows.length?'<div class="banner">⚠ '+T('ينتهي خلال أسبوع: ','Runs out within a week: ')+lows.map(function(m){return N(m.n)}).join('، ')+'</div>':''}
+function dis(){return '<div class="dis">'+T('التطبيق أداة تنظيم ومتابعة ولا يشخّص ولا يغني عن الطبيب. أنت تحضّر أدويتك بنفسك والعائلة تراجع معك.','The app is an organising and follow-up tool; it does not diagnose and does not replace your doctor. You prepare your own medicines and your family double-checks.')+'</div>'}
+function dayLabel(){return dayOff===0?T('اليوم','Today'):dayOff<0?T('أمس','Yesterday'):T('غداً','Tomorrow')}
+function scrToday(){var P0=p(),n=0,tot=P0.doses.length;P0.doses.forEach(function(d){if(d.d[dayOff])n++});
+ var h='<div class="seg"><button data-day="-1" class="'+(dayOff<0?'on':'')+'">'+T('أمس','Yesterday')+'</button><button data-day="0" class="'+(dayOff===0?'on':'')+'">'+T('اليوم','Today')+'</button><button data-day="1" class="'+(dayOff>0?'on':'')+'">'+T('غداً','Tomorrow')+'</button></div>';
+ h+='<div class="card"><b>'+T('جرعات ','Doses ')+dayLabel()+'</b><div class="pb"><i style="width:'+(n/tot*100)+'%"></i></div><span class="mut">'+n+' '+T('من','of')+' '+tot+'</span></div>';
+ P0.doses.forEach(function(d,i){var m=P0.meds[d.m],done=d.d[dayOff];h+='<div class="card row"><button class="chk'+(done?' done':'')+'" data-d="'+i+'">'+(done?'✓':'')+'</button><div class="g"><b>'+esc(N(m.n))+'</b><div class="mut">'+(d.t?T('8:00 م','8:00 PM'):T('8:00 ص','8:00 AM'))+(dayOff<0&&!done?' · '+T('منسية: سجّلها متأخرة','missed: log it late'):'')+'</div></div></div>'});
+ return h+dis()}
+function scrMeds(){var P0=p(),h='<div class="card mut">'+T('كريم/مرهم: كل علبة تكفي 30 يوماً على الأقل ولا تُخصم بالجرعات.','Cream/ointment: each box counts as at least 30 days and is not deducted per dose.')+'</div>';
+ P0.meds.forEach(function(m,i){var dd=days(m);h+='<div class="card"><div class="row"><div class="g"><b>'+esc(N(m.n))+'</b><div class="mut">'+T('المخزون: ','Stock: ')+m.pills+' '+(m.cream?T('علبة','box'):T('حبة','pills'))+'</div></div><span class="pill'+(dd<=7?' low':'')+'">'+dd+' '+T('يوم','days')+'</span></div><p style="margin:8px 0 0"><button class="btn alt" data-add="'+i+'">'+T('إضافة مخزون','Add stock')+'</button> <button class="btn alt" data-log="'+i+'">'+T('السجل','History')+'</button></p></div>'});
+ h+='<div class="card row"><div class="g"><b>'+T('مسح باركود علبة','Scan a box barcode')+'</b><div class="mut">'+T('يضيف الدواء ومخزونه تلقائياً','Adds the medicine and its stock')+'</div></div><button class="btn" data-scan="1">'+T('مسح','Scan')+'</button></div>';
+ h+='<div class="card"><b>'+T('إعدادات الجرعة','Dose settings')+'</b><div class="mut">'+T('أبكر وقت لتناول الجرعة قبل موعدها: ','Earliest time to take a dose before its slot: ')+P0.early+' '+T('دقيقة','min')+'</div><input type="range" min="0" max="60" step="5" value="'+P0.early+'" data-early="1"></div>';
+ h+='<h3>'+T('سجل تغييرات الأدوية','Medicine changes log')+'</h3>'+P0.changes.map(function(c){return '<div class="card mut">'+esc(N(c))+'</div>'}).join('');
+ return h}
+function scrLabs(){var P0=p(),tests=[[T('الكرياتينين','Creatinine'),P0.cr,'mg/dL'],[T('البوتاسيوم','Potassium'),P0.k,'mmol/L'],[T('الهيموغلوبين','Hemoglobin'),P0.hb,'g/dL']];
+ var s=tests[labSel],h='<div class="seg">'+tests.map(function(t,i){return '<button data-lab="'+i+'" class="'+(i===labSel?'on':'')+'">'+t[0]+'</button>'}).join('')+'</div>';
+ h+='<div class="card"><b>'+s[0]+'</b>'+chart(s[1],s[2])+'</div>';
+ h+='<div class="card"><b>'+T('eGFR المحسوب لآخر كرياتينين','Calculated eGFR for the latest creatinine')+'</b><div style="font-size:1.4em">'+egfr(P0.h,P0.cr[P0.cr.length-1])+' <span class="mut">mL/min/1.73m²</span></div><div class="mut">'+T('تقدير فقط. التطبيق يعرض القيم ولا يشخّص ولا يقرر أن نتيجة حرجة.','An estimate only. The app shows values; it never diagnoses or decides a result is critical.')+'</div></div>';
+ return h+'<div class="card row"><div class="g"><b>'+T('رفع نتيجة PDF','Upload a result PDF')+'</b><div class="mut">'+T('تُربط بزيارتها، وتُضاف الجديدة فقط','Linked to its visit; only new items are added')+'</div></div><button class="btn alt" data-imp="1">'+T('رفع','Upload')+'</button></div>'}
+function scrFluids(){var P0=p(),tot=P0.intake,pc=Math.min(100,tot/P0.limit*100),w=P0.weight,diff=Math.round((w[w.length-1]-w[w.length-2])*10)/10;
+ var h='<div class="card"><b>'+T('السوائل الداخلة','Fluid intake')+'</b><div class="pb"><i class="'+(tot>P0.limit?'over':'')+'" style="width:'+pc+'%"></i></div><span class="mut">'+tot+' / '+P0.limit+' '+T('مل','mL')+'</span>'+(tot>P0.limit?'<p style="color:var(--warn);font-weight:700;margin:6px 0 0">'+T('تجاوزت الحد الذي حدده فريقك الطبي','Above the limit set by your care team')+'</p>':'')+'<p style="margin:8px 0 0"><button class="btn" data-f="in">+100</button> <button class="btn alt" data-f="in250">+250</button></p></div>';
+ h+='<div class="card"><b>'+T('إسهال/قيء (تقدير)','Diarrhea/vomiting (estimate)')+'</b><div class="mut">'+P0.loss+' '+T('مل','mL')+'</div><p style="margin:8px 0 0"><button class="btn alt" data-f="loss">+100</button></p></div>';
+ h+='<div class="card"><b>'+T('الوزن اليومي','Daily weight')+'</b>'+chart(w,'kg')+'<div class="mut">'+T('الفرق عن أمس: ','Change from yesterday: ')+(diff>0?'+':'')+diff+' kg. '+T('حد الارتفاع يُحسب لكل مريض ويمكنك وضع حدك الخاص.','The weight-rise limit is worked out per patient and you can set your own.')+'</div><p style="margin:8px 0 0"><button class="btn alt" data-f="w">'+T('تسجيل وزن اليوم','Log today’s weight')+'</button></p></div>';
+ return h}
+function scrAppts(){var h='';p().appts.forEach(function(a,i){h+='<div class="card"><b>'+esc(N(a.t))+'</b><div class="mut">'+a.d+'</div><div class="seg"><button data-att="'+i+':1" class="'+(a.att===true?'on':'')+'">'+T('حضرت','Attended')+'</button><button data-att="'+i+':0" class="'+(a.att===false?'on':'')+'">'+T('لم أحضر','Missed')+'</button></div></div>'});
+ return h+'<div class="card"><input type="text" id="ap" placeholder="'+T('عنوان الموعد (إلزامي)','Appointment title (required)')+'"><button class="btn" data-apadd="1">'+T('إضافة موعد','Add appointment')+'</button></div>'}
+function scrHosp(){var h='<div class="mut" style="margin-bottom:8px">'+T('كل جهة تظهر في مكان واحد مع زياراتها وتحاليلها.','Each place appears once with its visits and tests.')+'</div>';hosp.forEach(function(x){h+='<div class="card"><b>'+N(x.n)+'</b><div class="mut">'+N(x.c)+'</div></div>'});return h}
+function scrReports(){var P0=p(),b=rep==='brief',h='<div class="seg"><button data-rep="brief" class="'+(b?'on':'')+'">'+T('مختصر','Brief')+'</button><button data-rep="detailed" class="'+(!b?'on':'')+'">'+T('مفصّل','Detailed')+'</button></div>';
+ h+='<div class="card"><div style="text-align:center"><img src="img/logo.png" width="38" style="border-radius:50%"><b style="display:block">'+T('تقرير الأدوية','Medication report')+'</b><span class="mut">'+esc(N(P0.name))+'</span></div>';
+ P0.meds.forEach(function(m){h+='<div class="row" style="border-top:1px solid var(--line);padding:6px 0"><div class="g">'+esc(N(m.n))+(b?'':'<div class="mut">'+T('الجرعات يومياً: ','Doses per day: ')+m.per+' · '+T('المخزون: ','Stock: ')+m.pills+'</div>')+'</div><span class="pill">'+days(m)+' '+T('يوم','d')+'</span></div>'});
+ h+=chart(P0.cr,T('الكرياتينين mg/dL','Creatinine mg/dL'))+'</div><button class="btn" style="width:100%" data-pdf="1">'+T('تصدير PDF','Export PDF')+'</button>';return h}
+function scrExp(){var s=0,h='';p().exp.forEach(function(e){s+=+e.c;h+='<div class="card row"><div class="g">'+esc(N(e.t))+'</div><b>'+e.c+' '+T('درهم','AED')+'</b></div>'});
+ return '<div class="card"><b>'+T('المجموع: ','Total: ')+s+' '+T('درهم','AED')+'</b></div>'+h+'<div class="card"><input type="text" id="et" placeholder="'+T('البند (إلزامي)','Item (required)')+'"><input type="number" id="ec" placeholder="'+T('المبلغ (إلزامي)','Amount (required)')+'"><button class="btn" data-eadd="1">'+T('إضافة مصروف','Add expense')+'</button></div>'}
+function scrKidney(){return '<div class="card"><b>'+T('حاسبة eGFR (للحساب السريع)','eGFR calculator (quick estimate)')+'</b><input type="number" id="kh" placeholder="'+T('الطول بالسم','Height in cm')+'" value="140"><input type="number" id="kc" step="0.1" placeholder="'+T('الكرياتينين mg/dL','Creatinine mg/dL')+'" value="1.5"><button class="btn" data-calc="1">'+T('احسب','Calculate')+'</button><div class="mut" style="margin-top:6px">'+T('تقدير فقط ولا يصلح في الفشل الحاد أو أثناء الغسيل.','An estimate only; not valid in acute injury or during dialysis.')+'</div></div><div class="card"><b>'+T('أنواع الغسيل','Dialysis types')+'</b><div class="mut">'+T('غسيل دموي، غسيل بريتواني، أو بدون غسيل. لكل مريض خطته وسوائله.','Hemodialysis, peritoneal, or none. Each patient has their own plan and fluid limit.')+'</div></div>'}
+function scrFamily(){var h='<div class="mut" style="margin-bottom:8px">'+T('لكل مريض بياناته المنفصلة. جرّب التبديل ثم ارجع لشاشة اليوم.','Each patient has separate data. Switch and go back to Today.')+'</div>';
+ P.forEach(function(x,i){h+='<div class="card row"><div class="g"><b>'+esc(N(x.name))+'</b></div><button class="btn'+(i===cur?'':' alt')+'" data-pick="'+i+'">'+(i===cur?T('الحالي','Current'):T('تبديل','Switch'))+'</button></div>'});
+ h+='<div class="card"><b>'+T('حماية ملفات الأطفال برمز PIN','Protect children’s files with a PIN')+'</b><div class="mut">'+(pinOk?T('مفتوح. جرّب القفل.','Unlocked. Try locking.'):T('أدخل 1234 للتجربة','Enter 1234 to try'))+'</div>'+(pinOk?'<button class="btn alt" data-lock="1">'+T('قفل','Lock')+'</button>':'<input type="password" id="pn" placeholder="PIN"><button class="btn" data-pin="1">'+T('فتح','Unlock')+'</button>')+'</div>';return h}
+function scrRemind(){return ['🔋 '+T('استثناء التطبيق من توفير البطارية','Exclude the app from battery saving'),'⏰ '+T('السماح بالمنبهات الدقيقة','Allow exact alarms'),'🔔 '+T('السماح بالإشعارات','Allow notifications'),'🚀 '+T('التشغيل التلقائي بعد إعادة تشغيل الهاتف','Auto-start after phone restart')].map(function(x){return '<div class="card sw"><input type="checkbox" checked disabled><span>'+x+'</span></div>'}).join('')+'<div class="card"><button class="btn" data-testn="1">'+T('اختبار التنبيه','Test the alert')+'</button></div>'}
+function scrBackup(){return '<div class="card sw"><input type="checkbox" id="bk" '+(backupOn?'checked':'')+' data-bk="1"><span>'+T('نسخ احتياطي تلقائي إلى Google Drive','Automatic backup to Google Drive')+'</span></div><div class="card"><div class="mut">'+T('آخر نسخة: ','Last backup: ')+lastBackup+'</div><button class="btn" data-bknow="1">'+T('انسخ الآن','Back up now')+'</button></div><div class="dis">'+T('في وضع الضيف تبقى البيانات على الهاتف فقط بلا نسخ احتياطي.','In guest mode data stays on the phone with no backup.')+'</div>'}
+function scrSettings(){return '<div class="card"><b>'+T('اللغة','Language')+'</b><div class="seg"><button data-l="ar" class="'+(L==='ar'?'on':'')+'">العربية</button><button data-l="en" class="'+(L==='en'?'on':'')+'">English</button></div></div><div class="card"><b>'+T('المظهر','Appearance')+'</b><div class="seg"><button data-th="auto" class="'+(theme==='auto'?'on':'')+'">'+T('تلقائي','Auto')+'</button><button data-th="light" class="'+(theme==='light'?'on':'')+'">'+T('فاتح','Light')+'</button><button data-th="dark" class="'+(theme==='dark'?'on':'')+'">'+T('داكن','Dark')+'</button></div><b>'+T('حجم الخط','Text size')+'</b><input type="range" min="13" max="21" value="'+fsz+'" data-fs="1"></div>'}
+function scrPrivacy(){return '<div class="card sw"><input type="checkbox" '+(crash?'checked':'')+' data-crash="1"><span>'+T('تقارير الأعطال (اختياري، متوقفة افتراضياً): نوع الخطأ وموضعه ونسخة التطبيق وطراز الهاتف فقط، بلا أسماء أو بيانات صحية.','Crash reports (optional, off by default): error type, location, app version and phone model only, no names or health data.')+'</span></div><div class="card"><a href="https://mfathiabed-afk.github.io/leencare-privacy/" target="_blank" rel="noopener">'+T('سياسة الخصوصية (عربي/English)','Privacy policy (Arabic/English)')+'</a></div><div class="card"><a href="https://docs.google.com/forms/d/e/1FAIpQLSe1UR-rvXK2QuchuMRF604YEzsTrLWhnBqyt6wiWdRY7PB3ww/viewform" target="_blank" rel="noopener">'+T('إرسال ملاحظات','Send feedback')+'</a><div class="mut">'+T('لا تكتب أسماء مرضى ولا بيانات صحية.','Do not write patient names or health data.')+'</div></div>'}
+function scrGuide(){var q=[[T('1. أضف المريض','1. Add the patient'),T('من ملفات العائلة أضف مريضاً واحداً أو أكثر.','Add one or more patients from the family files.')],[T('2. أضف الأدوية','2. Add medicines'),T('أدخل الدواء والجرعات والمخزون أو امسح الباركود.','Enter the medicine, doses and stock, or scan the barcode.')],[T('3. أكّد الجرعات','3. Confirm doses'),T('من شاشة اليوم. الجرعة المنسية تُسجَّل من الأيام السابقة.','From Today. A missed dose can be logged from previous days.')],[T('4. تابع السوائل والتحاليل','4. Track fluids and labs'),T('سجّل السوائل والوزن، وارفع نتائج التحاليل.','Log fluids and weight, and upload lab results.')],[T('5. اطبع تقريراً','5. Print a report'),T('مختصر أو مفصّل بصيغة PDF لطبيبك.','Brief or detailed PDF for your doctor.')]];
+ return q.map(function(x){return '<details><summary>'+x[0]+'</summary><div class="mut">'+x[1]+'</div></details>'}).join('')}
+var MORE=[['fluids','💧',T('السوائل والوزن','Fluids & weight'),scrFluids],['appts','📅',T('المواعيد','Appointments'),scrAppts],['hosp','🏥',T('المستشفيات','Hospitals'),scrHosp],['reports','📄',T('التقارير','Reports'),scrReports],['exp','💰',T('المصاريف','Expenses'),scrExp],['kidney','🫘',T('أدوات الكلى','Kidney tools'),scrKidney],['family','👨‍👩‍👧',T('العائلة','Family'),scrFamily],['remind','🔔',T('التذكيرات','Reminders'),scrRemind],['backup','☁️',T('النسخ الاحتياطي','Backup'),scrBackup],['settings','⚙️',T('الإعدادات','Settings'),scrSettings],['privacy','🔒',T('الخصوصية والملاحظات','Privacy & feedback'),scrPrivacy],['guide','📘',T('دليل الاستخدام','Guide'),scrGuide]];
+function scrMore(){return '<div class="grid">'+MORE.map(function(m){return '<button class="tile" data-more="'+m[0]+'"><span>'+m[1]+'</span>'+m[2]+'</button>'}).join('')+'</div>'}
 function render(){
   var h=document.documentElement;h.lang=L;h.dir=L==='ar'?'rtl':'ltr';
-  document.getElementById('back').textContent=t('back');document.getElementById('lang').textContent=t('lang');
-  document.getElementById('note').textContent=t('note');document.getElementById('hello').textContent=t('hello');document.getElementById('title').textContent=t('who');
-  var lows=meds.filter(function(m){return days(m)<=7});
-  document.getElementById('banner').innerHTML=lows.length?'<div class="banner">⚠ '+t('low')+' '+lows.map(function(m){return S[L].m[m.id]}).join('، ')+'</div>':'';
-  var tabs=[['today',t('today')],['meds',t('meds')],['fluids',t('fluids')],['labs',t('labs')]];
-  document.getElementById('tabs').innerHTML=tabs.map(function(x){return '<button data-t="'+x[0]+'" class="'+(tab===x[0]?'on':'')+'">'+x[1]+'</button>'}).join('');
-  var b=document.getElementById('body'),h2='';
-  if(tab==='today'){
-    var n=doses.filter(function(d){return d.d}).length;
-    h2+='<div class="card"><b>'+t('doses')+'</b><div class="pb"><i style="width:'+(n/doses.length*100)+'%"></i></div><span class="mut">'+n+' '+t('of')+' '+doses.length+'</span></div>';
-    doses.forEach(function(d,i){h2+='<div class="card row"><button class="chk'+(d.d?' done':'')+'" data-d="'+i+'" aria-label="confirm">'+(d.d?'✓':'')+'</button><div class="g"><b>'+S[L].m[d.m]+'</b><div class="mut">'+S[L].tm[d.s]+'</div></div></div>'});
-  }
-  if(tab==='meds'){
-    h2+='<div class="card mut">'+t('cream')+'</div>';
-    meds.forEach(function(m){var dd=days(m);h2+='<div class="card"><div class="row"><div class="g"><b>'+S[L].m[m.id]+'</b><div class="mut">'+t('stock')+': '+(m.cream?m.pills+' '+t('box'):m.pills+' '+t('pills'))+'</div></div><span class="pill'+(dd<=7?' low':'')+'">'+dd+' '+t('days')+'</span></div><p style="margin:8px 0 0"><button class="btn alt" data-a="'+m.id+'">'+t('addBox')+'</button></p></div>'});
-  }
-  if(tab==='fluids'){
-    var tot=fl.intake,pc=Math.min(100,tot/fl.limit*100);
-    h2+='<div class="card"><b>'+t('intake')+'</b><div class="pb"><i class="'+(tot>fl.limit?'over':'')+'" style="width:'+pc+'%"></i></div><span class="mut">'+tot+' / '+fl.limit+' '+t('ml')+'</span>'+(tot>fl.limit?'<p style="color:var(--warn);font-weight:700;margin:6px 0 0">'+t('overlimit')+'</p>':'')+'<p style="margin:8px 0 0"><button class="btn" data-f="in">'+t('addMl')+'</button></p></div>';
-    h2+='<div class="card"><b>'+t('other')+'</b><div class="mut">'+fl.loss+' '+t('ml')+'</div><p style="margin:8px 0 0"><button class="btn alt" data-f="loss">'+t('addLoss')+'</button></p></div>';
-  }
-  if(tab==='labs'){
-    var w=300,ht=150,mx=2.2,mn=1.2,pts=cr.map(function(v,i){return [20+i*(w-40)/(cr.length-1),ht-20-(v-mn)/(mx-mn)*(ht-40),v]});
-    h2+='<div class="card"><b>'+t('cr')+'</b><svg viewBox="0 0 '+w+' '+ht+'" role="img" aria-label="creatinine"><polyline fill="none" stroke="var(--pri)" stroke-width="3" points="'+pts.map(function(p){return p[0]+','+p[1]}).join(' ')+'"/>'+pts.map(function(p){return '<circle cx="'+p[0]+'" cy="'+p[1]+'" r="4" fill="var(--pri)"/><text x="'+p[0]+'" y="'+(p[1]-8)+'" font-size="9" text-anchor="middle" fill="var(--mut)">'+p[2]+'</text>'}).join('')+'</svg><div class="mut">'+t('crnote')+'</div></div>';
-  }
-  h2+='<div class="dis">'+t('dis')+'</div>';
-  b.innerHTML=h2;
+  if(theme==='auto')h.removeAttribute('data-theme');else h.setAttribute('data-theme',theme);
+  document.getElementById('back').textContent=T('الموقع','Website');document.getElementById('lang').textContent=L==='ar'?'English':'العربية';
+  document.getElementById('note').textContent=T('عرض تجريبي ببيانات وهمية بالكامل. لا يُحفظ شيء ولا يمثل أي شخص حقيقي. جرّب كل الشاشات من «المزيد».','A demo with entirely fake data. Nothing is saved and it represents no real person. Try every screen from “More”.');
+  ph.style.setProperty('--fs',fsz+'px');
+  var o='';
+  if(step==='signin'){o='<div class="splash"><img src="img/logo.png" alt=""><h2 style="margin:0">LeenCare</h2><div class="mut">'+T('رعاية مريض الكلى، أسهل وأنظم','Kidney care, simpler and better organised')+'</div><button class="btn" data-go="consent" style="width:100%">'+T('الدخول بحساب Google','Sign in with Google')+'</button><button class="btn alt" data-go="guest" style="width:100%">'+T('الدخول كزائر','Continue as guest')+'</button></div>'}
+  else if(step==='guest'){o='<div class="splash"><h3>'+T('وضع الضيف','Guest mode')+'</h3><div class="mut">'+T('بياناتك تبقى على هذا الهاتف فقط ولا يوجد نسخ احتياطي. إذا حذفت التطبيق ضاعت.','Your data stays on this phone only and there is no backup. If you delete the app it is lost.')+'</div><button class="btn" data-go="consent" style="width:100%">'+T('فهمت','I understand')+'</button></div>'}
+  else if(step==='consent'){o='<div class="splash"><h3>'+T('قبل أن تبدأ','Before you start')+'</h3><div class="mut" style="text-align:start">'+T('LeenCare أداة تنظيم ومتابعة، وليست جهازاً طبياً. لا تشخّص ولا تعالج ولا تغني عن طبيبك. لا توقف دواءً ولا تغيّر جرعته دون استشارته. في الطوارئ اتصل بالإسعاف.','LeenCare is an organising and follow-up tool, not a medical device. It does not diagnose or treat and does not replace your doctor. Never stop or change a medicine without asking. In an emergency call the ambulance.')+'</div><button class="btn" data-go="welcome" style="width:100%">'+T('أوافق وأتابع','Agree and continue')+'</button></div>'}
+  else if(step==='welcome'){o='<div class="splash"><img src="img/logo.png" alt=""><h2 style="margin:0">'+T('أهلاً بك','Welcome')+'</h2><div>'+T('مريض الكلى إنسان طبيعي، مع بعض الاحتياطات.','A kidney patient is a normal person, with some precautions.')+'</div><button class="btn" data-go="app" style="width:100%">'+T('ابدأ','Start')+'</button></div>'}
+  else if(sub){var m=MORE.filter(function(x){return x[0]===sub})[0];o=bar(m[2],true)+banner()+'<div class="body">'+(sub==='family'||m[0]==='kids'?'':'')+m[3]()+dis()+'</div>'}
+  else{var title=tab==='today'?N(p().name):tab==='meds'?T('الأدوية','Medicines'):tab==='labs'?T('التحاليل','Labs'):T('المزيد','More');
+    o=bar(title,false)+banner()+'<div class="body">'+(tab==='today'?scrToday():tab==='meds'?scrMeds():tab==='labs'?scrLabs():scrMore())+'</div><div class="tabs">'+[['today',T('اليوم','Today')],['meds',T('الأدوية','Medicines')],['labs',T('التحاليل','Labs')],['more',T('المزيد','More')]].map(function(x){return '<button data-t="'+x[0]+'" class="'+(tab===x[0]?'on':'')+'">'+x[1]+'</button>'}).join('')+'</div>'}
+  if(modal)o+='<div class="modal"><div class="dlg"><img src="img/logo.png" alt=""><p>'+modal.msg+'</p><button class="btn" data-ok="1">'+T('حسناً','OK')+'</button></div></div>';
+  ph.innerHTML=o;
 }
+function val(id){var e=document.getElementById(id);return e?e.value.trim():''}
+document.addEventListener('input',function(e){var x=e.target;if(x.dataset.early){p().early=+x.value;var s=x.previousElementSibling;if(s)s.textContent=T('أبكر وقت لتناول الجرعة قبل موعدها: ','Earliest time to take a dose before its slot: ')+x.value+' '+T('دقيقة','min')}if(x.dataset.fs){fsz=+x.value;ph.style.setProperty('--fs',fsz+'px')}});
 document.addEventListener('click',function(e){
-  var x=e.target.closest('button');if(!x)return;
-  if(x.id==='lang'){L=L==='ar'?'en':'ar';try{localStorage.setItem('lc_lang',L)}catch(_){}}
-  else if(x.dataset.t){tab=x.dataset.t}
-  else if(x.dataset.d!==undefined){var d=doses[+x.dataset.d],m=meds[d.m];d.d=!d.d;if(!m.cream){m.pills+=d.d?-1:1;if(m.pills<0)m.pills=0}}
-  else if(x.dataset.a!==undefined){var m2=meds[+x.dataset.a];m2.pills+=m2.cream?1:30}
-  else if(x.dataset.f==='in'){fl.intake+=100}
-  else if(x.dataset.f==='loss'){fl.loss+=100}
+  var x=e.target.closest('button');if(!x){return}
+  var d=x.dataset;
+  if(x.id==='lang'||d.l){L=d.l||(L==='ar'?'en':'ar');try{localStorage.setItem('lc_lang',L)}catch(_){}P.forEach(function(q,i){});}
+  else if(d.ok){modal=null}
+  else if(d.go==='back'){sub=null}
+  else if(d.go==='who'){sub='family'}
+  else if(d.go){step=d.go}
+  else if(d.t){tab=d.t;sub=null}
+  else if(d.more){sub=d.more}
+  else if(d.day!==undefined){dayOff=+d.day}
+  else if(d.d!==undefined){var ds=p().doses[+d.d],m=p().meds[ds.m],on=!ds.d[dayOff];ds.d[dayOff]=on;if(!m.cream){m.pills+=on?-1:1;if(m.pills<0)m.pills=0;m.log.unshift((on?'−1 ':'+1 ')+T('تأكيد جرعة','dose confirmed'))}}
+  else if(d.add!==undefined){var m2=p().meds[+d.add];m2.pills+=m2.cream?1:30;m2.log.unshift('+'+(m2.cream?1:30)+' '+T('إضافة مخزون','stock added'))}
+  else if(d.log!==undefined){var m3=p().meds[+d.log];dlg('<b>'+esc(N(m3.n))+'</b><br>'+(m3.log.length?m3.log.slice(0,6).map(esc).join('<br>'):T('لا حركات بعد','No movements yet')))}
+  else if(d.scan){p().meds.push({n:A('دواء ممسوح (مثال)','Scanned medicine (example)'),pills:30,per:1,cream:false,log:[]});dlg(T('تم مسح الباركود وإضافة الدواء بمخزون 30 حبة.','Barcode scanned; the medicine was added with 30 pills.'))}
+  else if(d.lab!==undefined){labSel=+d.lab}
+  else if(d.imp){dlg(T('عند الرفع تُضاف نتائج جديدة فقط، ولا تتكرر النتيجة نفسها بنفس التاريخ.','On upload only new results are added; the same test and date is never duplicated.'))}
+  else if(d.f){var P0=p();if(d.f==='in')P0.intake+=100;else if(d.f==='in250')P0.intake+=250;else if(d.f==='loss')P0.loss+=100;else if(d.f==='w'){P0.weight.push(Math.round((P0.weight[P0.weight.length-1]+0.2)*10)/10);if(P0.weight.length>7)P0.weight.shift()}}
+  else if(d.att){var a=d.att.split(':');p().appts[+a[0]].att=a[1]==='1'}
+  else if(d.apadd){var t1=val('ap');if(!t1){dlg(T('عنوان الموعد إلزامي.','The appointment title is required.'))}else{p().appts.unshift({t:t1,d:'2026-12-01',att:null});dlg(T('تم حفظ الموعد.','Appointment saved.'))}}
+  else if(d.rep){rep=d.rep}
+  else if(d.pdf){dlg(T('في التطبيق يُنشأ ملف PDF بشكل موحد مع شعار وبيانات المريض ورقم التقرير.','In the app a unified PDF is created with the logo, patient block and report ID.'))}
+  else if(d.eadd){var t2=val('et'),c2=val('ec');if(!t2||!c2){dlg(T('البند والمبلغ إلزاميان.','Item and amount are required.'))}else{p().exp.unshift({t:t2,c:c2});dlg(T('تم حفظ المصروف.','Expense saved.'))}}
+  else if(d.calc){var r=egfr(+val('kh'),+val('kc'));dlg(T('eGFR التقديري: ','Estimated eGFR: ')+r+' mL/min/1.73m²<br><span class="mut">'+T('تقدير فقط.','An estimate only.')+'</span>')}
+  else if(d.pick!==undefined){cur=+d.pick;tab='today';sub=null}
+  else if(d.pin){if(val('pn')==='1234'){pinOk=true}else{dlg(T('الرمز غير صحيح.','Incorrect PIN.'))}}
+  else if(d.lock){pinOk=false}
+  else if(d.testn){dlg('🔔 '+T('هذا اختبار تنبيه: دواء ينتهي قريباً.','This is a test alert: a medicine is running out.'))}
+  else if(d.bknow){lastBackup=T('الآن','Just now');dlg(T('تم النسخ الاحتياطي.','Backup done.'))}
+  else if(d.th){theme=d.th}
   else return;
   render();
 });
+document.addEventListener('change',function(e){var x=e.target;if(x.dataset.bk){backupOn=x.checked}if(x.dataset.crash){crash=x.checked}});
 render();
 })();
 </script>
